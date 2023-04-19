@@ -1,16 +1,13 @@
 import React from 'react';
+//users need to import total expenses
 
 const UserItem = (props) => {
 	return (
-		<li className='Item'>
-			{props.firstname} {props.lastname}
-			<div>
-				<span className=''>
-					${props.totalExpenses}
-				</span>
-			</div>
-		</li>
-	);
+	<tr>
+		<td>{props.firstname}</td>
+		<td>{props.lastname}</td>
+		<td>${props.totalExpenses}</td>
+	</tr>);
 };
 
 export default UserItem;

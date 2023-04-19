@@ -1,10 +1,8 @@
 import React from 'react'
-import UserItem from './UserItem';
-
-const ExpenseList = () => {
-   
-   
-    const expenses =[
+import ExpenseItem from './ExpenseItem';
+//import user data based off the ids that match
+ 
+const expenseList =[
     {
         userId:12,
         expenseId: 313,
@@ -24,13 +22,31 @@ const ExpenseList = () => {
 ];
 
 
+const ExpenseList = () => {
+    function Mapping({expenses}){
+        return expenses.map((expense) => (
+          <ExpenseItem 
+            fullname={expense.fullname} //fullname is userItem.firstname + userItem.lastname
+            category={expense.category} 
+            description = {expense.description}
+            cost={expense.cost} //TEMPORARY - needs to link to expense data.
+          />
+        ));
+    }
+
+
+
     return (
-		<ul className='list-group'>
-			{users.map((user) => (
-				<UserItem id={user.id} firstname={user.firstname} lastname={user.lastname} totalExpenses={user.totalExpenses} />
-			))}
-		</ul>
-    )
+        <table>
+          <tr>
+            <th>Full Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Cost</th>
+          </tr>
+          <Mapping expenses={expenseList}/>
+        </table>
+      )
 }
 
-export default UserList
+export default ExpenseList
