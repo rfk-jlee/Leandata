@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ExpenseItem = (props) => {
+const CompanyExpenseItem = (props) => {
 	return (
         <tr>
             <td>{props.fullname}</td>
@@ -11,4 +11,4 @@ const ExpenseItem = (props) => {
     );
 }
 
-export default ExpenseItem;
+export default CompanyExpenseItem;

@@ -1,3 +1,5 @@
+//gonna need setState use States to update the form
+
 import React from 'react';
 
 const AddUserForm = () => {

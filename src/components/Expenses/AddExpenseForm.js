@@ -52,4 +52,4 @@ const AddExpenseForm = () => {
 	);
 };
 
-export default AddUserForm;
+export default AddExpenseForm;
