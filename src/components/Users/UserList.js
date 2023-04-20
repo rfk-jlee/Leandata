@@ -4,7 +4,6 @@ import UserForm from './UserForm.js';
 import {useState } from 'react';
 
 const UserList = ({ulist, setUlist, explist, setExplist}) => {
-  //state test
   //state of add/edit Form
   const [showForm, setShowForm] = useState(false);
 
@@ -19,14 +18,11 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
           deleteuser={DeleteUser}
           setUlist={setUlist}
           ulist={ulist}
-        
         />
 
         } 
       )
-    
   }
-
 
     //on Click run add new user form
     return (

@@ -7,8 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 const AddUserForm = ({ulist, setUlist}) => {
 
-	const [userValues, setUserValues] = useState('');
-
+	const [fname, setFname] = useState('');
+	const [lname, setLname] = useState('');
 
 	return (
 		<form onSubmit={onSubmit}>
@@ -20,6 +20,9 @@ const AddUserForm = ({ulist, setUlist}) => {
 						type='text'
 						className='form-control'
 						id='fname'
+						value={fname}
+						onChange={(e)=>{setFname(e.target.value)}}
+
 					></input>
 				</div>
 				<div className='col-sm'>
@@ -29,6 +32,8 @@ const AddUserForm = ({ulist, setUlist}) => {
 						type='text'
 						className='form-control'
 						id='lname'
+						value={lname}
+						onChange={(e)=>{setLname(e.target.value)}}
 
 					></input>
 				</div>
@@ -49,11 +54,15 @@ const AddUserForm = ({ulist, setUlist}) => {
 		let copyList = {...ulist};
 		//GENERATE UNIQUE KEY with uuidv4
 		let newkey = uuidv4();
+		//clear First name and last name
+		setFname('');
+		setLname('');
+
 		//construct key-value pair
 		copyList[newkey] = {
 				userId: newkey,
-			 	firstname:event.target[0].value,
-				lastname:event.target[1].value,
+			 	firstname: fname,
+				lastname: lname,
 				expenseIds:[]
 		};
 		//add user

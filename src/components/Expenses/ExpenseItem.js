@@ -27,8 +27,8 @@ const ExpenseItem = (props) => {
             </>)}
 
             <div className="mod">
-                <button onClick={()=>{props.deleteExpenses(props)}}>delete</button>
                 <button onClick={()=>{Edit()}}>{edit == true? 'Save': 'Edit'}</button>
+                <button onClick={()=>{props.deleteExpenses(props)}}>delete</button>
                 {isNaN(cost) ?<label className="err">Cost must be a number</label>:''}
             </div>
         </tr>

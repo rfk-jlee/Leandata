@@ -7,6 +7,8 @@ const AddExpenseForm = (props) => {
     const [userId, setUserId] = useState('');
     const [category, setCategory] = useState('');
     const [cost, setCost] = useState('');
+    const [description, setDescription] = useState('');
+
 
     //form for adding a brand new expense
 	return (
@@ -28,6 +30,9 @@ const AddExpenseForm = (props) => {
 						type='text'
 						className='form-control'
 						id='description'
+                        value={description}
+                        onChange={(e)=>{setDescription(e.target.value)}}
+
 					></input>
                     
 				</div>
@@ -38,6 +43,7 @@ const AddExpenseForm = (props) => {
 						type='text'
 						className='form-control'
 						id='cost'
+                        value={cost}
                         onChange={(e)=>{setCost(e.target.value)}}
 					></input>
                     {isNaN(cost)?<label className="err">Cost must be a number</label>:''}
@@ -69,6 +75,8 @@ const AddExpenseForm = (props) => {
             return;
         }
 
+        setDescription('');
+        setCost('');
         //add new key/value pair to copied hashtable
 		copyExpList[newkey] = {
 				userId: userId,
