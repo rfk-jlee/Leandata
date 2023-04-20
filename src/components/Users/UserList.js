@@ -32,6 +32,8 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
   //state test
   //state of add/edit Form
   const [showForm, setShowForm] = useState(false);
+
+  
   console.log('new Ulist');
   console.log(ulist);
   console.log('new explist');
@@ -46,8 +48,10 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
           firstname={user.firstname} 
           lastname={user.lastname} 
           totalExpenses={GetExpensesFromUser(user.expenseIds)}
-          edituser={EditUser}
           deleteuser={DeleteUser}
+          setUlist={setUlist}
+          ulist={ulist}
+        
         />
 
         } 
@@ -76,14 +80,6 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
       </>
     );
 
-    function EditUser({props}){
-      //open UserForm
-      //get User Data
-      //populate Form with info
-      let existingUser = ulist[this.userId];
-      
-  }
-  
   //move this later
   function DeleteUser(props){
     //copy the dict
@@ -91,10 +87,10 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
     let copylist = {...ulist};
     //find all existing expenses from the
     let userExpenses;
+    //if expenses exist for this userid
     if (copylist[userid].expenseIds.length > 0) {
       userExpenses = copylist[userid].expenseIds;
       DeleteExpenses(userExpenses);
-
     }
   
     //delete dictionary entry

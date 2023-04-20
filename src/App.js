@@ -10,7 +10,7 @@ import {
 import { useState, createContext, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './routes/layout';
-const { uuid } = require('uuidv4');
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -38,6 +38,8 @@ return(
         setExplist={setExplist} />} />
     <Route path="expenses" element={
         <ExpenseList 
+        ulist={ulist}
+        setUlist={setUlist}
         explist={explist}
         setExplist={setExplist} />} />
     <Route path="companyexpenses" element={

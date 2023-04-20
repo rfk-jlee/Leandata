@@ -1,34 +1,14 @@
 import React from 'react'
 import ExpenseItem from './ExpenseItem';
 //import user data based off the ids that match
- 
-const expenseList =[
-    {
-        userId:12,
-        expenseId: 313,
-        fullname: 'Jonathan Lee',
-        category: 'food',
-        description: 'had dinner with client',
-        cost: 130.31   
-    },
-    {
-        userId:12,
-        expenseId: 314,
-        fullname:'Jonathan Lee',
-        category: 'travel' ,
-        description: 'had dinner with client',
-        cost: 50.00
-    }
-];
 
 
-const ExpenseList = ({explist, setExplist}) => {
+const ExpenseList = ({explist, setExplist, ulist, setUlist}) => {
 
 
   function Mapping({explist}){
     console.log('exp list lego')
     console.log(explist);
-  
     return Object.entries(explist).map( 
       ([key, expense]) => {
          return <ExpenseItem 
@@ -36,6 +16,8 @@ const ExpenseList = ({explist, setExplist}) => {
           description={expense.description} 
           category={expense.category}
           cost={expense.cost}
+          expId = {expense.expId}
+          deleteExpenses={DeleteExpenses}
         />
 
         } 
@@ -55,6 +37,35 @@ const ExpenseList = ({explist, setExplist}) => {
           <Mapping explist={explist}/>
         </table>
       )
+
+      function DeleteExpenses(props){
+        //copy the dict
+        console.log(props);
+        let copyexplist = {...explist};
+
+        //delete expenses from user
+         DeleteExpensesFromUser();
+
+        //delete expId from copied explist
+        delete copyexplist[props.expId];
+
+        //rerender new Exp list
+        setExplist(copyexplist);
+         // then find expense ID from users list and delete it from there 
+      }
+
+      
+      function DeleteExpensesFromUser(props){
+        //copy the dict
+        console.log(props);
+        let copyexplist = {...explist};
+        //delete expId from copied explist
+        delete copyexplist[props.expId];
+
+        //rerender new Exp list
+        setExplist(copyexplist);
+         // then find expense ID from users list and delete it from there 
+      }
 }
 
 export default ExpenseList

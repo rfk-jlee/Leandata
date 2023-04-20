@@ -2,6 +2,7 @@
 //import save user
 import React from 'react';
 import {useState} from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const AddUserForm = ({ulist, setUlist}) => {
@@ -46,13 +47,9 @@ const AddUserForm = ({ulist, setUlist}) => {
 		event.preventDefault();
 		//when submitting - check if editing or creating new user
 
-		//edit existing dictionary or creating new key/value pair -
-
-
 		let copyList = {...ulist};
-		//TEMPORARY WAY TO GENERATE UNIQUE KEY - LOOK INTO LATER LMAO
-		let newkey = uuid();
-		//THERES GOTTA BE A BETTER WAY TO GET THE VALUE OF THIS IN REACT -
+		//GENERATE UNIQUE KEY with uuidv4
+		let newkey = uuidv4();
 		//construct key-value pair
 		copyList[newkey] = {
 				userId: newkey,
@@ -61,7 +58,7 @@ const AddUserForm = ({ulist, setUlist}) => {
 				expenseIds:[]
 		};
 		//add user
-		setUlist(test);
+		setUlist(copyList);
 	}
 };
 
