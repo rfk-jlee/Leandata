@@ -22,18 +22,26 @@ const expenseList =[
 ];
 
 
-const ExpenseList = () => {
-    function Mapping({expenses}){
-        return expenses.map((expense) => (
-          <ExpenseItem 
-            fullname={expense.fullname} //fullname is userItem.firstname + userItem.lastname
-            category={expense.category} 
-            description = {expense.description}
-            cost={expense.cost} //TEMPORARY - needs to link to expense data.
-          />
-        ));
-    }
+const ExpenseList = ({explist, setExplist}) => {
 
+
+  function Mapping({explist}){
+    console.log('exp list lego')
+    console.log(explist);
+  
+    return Object.entries(explist).map( 
+      ([key, expense]) => {
+         return <ExpenseItem 
+          userId={expense.userId} 
+          description={expense.description} 
+          category={expense.category}
+          cost={expense.cost}
+        />
+
+        } 
+      )
+    
+  }
 
 
     return (
@@ -44,7 +52,7 @@ const ExpenseList = () => {
             <th>Description</th>
             <th>Cost</th>
           </tr>
-          <Mapping expenses={expenseList}/>
+          <Mapping explist={explist}/>
         </table>
       )
 }
