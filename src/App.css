@@ -62,3 +62,7 @@ th, tr{
 .err{
   color:red;
 }
+
+.mod button{
+  margin:5px;
+}

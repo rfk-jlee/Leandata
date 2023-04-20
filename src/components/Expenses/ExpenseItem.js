@@ -10,6 +10,14 @@ const ExpenseItem = (props) => {
     const [description, setDescription] = useState(props.description);
 	const [cost, setCost] = useState(props.cost);
     
+    //only allow 1 edit at a time
+    if (props.masterEdit != props.expId && edit==true){
+		setEdit(false);
+	} else if (props.masterEdit == props.expId && edit==false){
+		setEdit(true);
+	}
+
+    
 	return (
         <tr>
              {edit==true ? (<>
@@ -36,6 +44,7 @@ const ExpenseItem = (props) => {
 
     		//edit press turn into inputs
 		function Edit(){
+            props.setMasterEdit(props.expId);
 			let expId = props.expId;
 			let copyList = {...props.explist};
             let newUID = userId;
@@ -67,9 +76,10 @@ const ExpenseItem = (props) => {
             }
 
 			//saves edit if edit is false
-			if(edit){
+			if(props.masterEdit == props.expId){
 				props.setExplist(copyList);
                 props.setUlist(copyUserList);
+                props.setMasterEdit('');
 
 			} else{
                 console.log('setting new userID');

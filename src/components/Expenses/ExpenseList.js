@@ -9,6 +9,10 @@ const ExpenseList = ({explist, setExplist, ulist, setUlist}) => {
 
 
   const [showForm, setShowForm] = useState(false);
+    //master edit
+    const [masterEdit, setMasterEdit] = useState('');
+
+
 
   function Mapping({explist}){
     console.log('exp list lego')
@@ -30,6 +34,9 @@ const ExpenseList = ({explist, setExplist, ulist, setUlist}) => {
           ulist = {ulist}
           setUlist={setUlist}
           deleteExpensesFromUser={DeleteExpensesFromUser}
+          masterEdit={masterEdit}
+          setMasterEdit={setMasterEdit}
+
         />
 
         } 

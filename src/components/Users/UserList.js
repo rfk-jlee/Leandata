@@ -6,6 +6,8 @@ import {useState } from 'react';
 const UserList = ({ulist, setUlist, explist, setExplist}) => {
   //state of add/edit Form
   const [showForm, setShowForm] = useState(false);
+  //master edit
+  const [masterEdit, setMasterEdit] = useState('');
 
   function Mapping({users}){  
     return Object.entries(users).map( 
@@ -18,6 +20,8 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
           deleteuser={DeleteUser}
           setUlist={setUlist}
           ulist={ulist}
+          masterEdit={masterEdit}
+          setMasterEdit={setMasterEdit}
         />
 
         } 
