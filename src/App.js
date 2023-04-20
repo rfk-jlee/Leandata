@@ -1,7 +1,6 @@
 import './App.css';
 import UserList from './components/Users/UserList.js';
 import ExpenseList from './components/Expenses/ExpenseList';
-import AddExpenseForm from './components/Expenses/AddExpenseForm';
 import CompanyExpensesList from './components/CompanyExpenses/CompanyExpenseList';
 import {
     userList,
@@ -10,19 +9,17 @@ import {
 import { useState, createContext, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './routes/layout';
-import { v4 as uuidv4 } from 'uuid';
 
 
 
 
-//userList displays be default
-//have buttons to show different tables
-//UserList - All Expenses - Company Expenses
-
+//browser router for single page app
 
 function App() {
   //initial lists
+  //ulist = user hash table
   const [ulist, setUlist] = useState(userList);
+  //explist = expense hash table
   const [explist, setExplist] = useState(expenseList);
 
 

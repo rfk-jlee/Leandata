@@ -1,8 +1,5 @@
 import React from 'react'
 import CompanyExpenseItem from './CompanyExpenseItem';
-//import expense DB - use reducer to group all by category 
-//generate the expense list using a reducer 
-//combine all expenses based on category
  
 const CompanyExpensesList = ({explist}) => {
     //combine into dictionary with Reduce function

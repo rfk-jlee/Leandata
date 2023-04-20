@@ -1,7 +1,5 @@
 import React from 'react'
 import UserItem from './UserItem';
-import { userList,
-         expenseList } from '../../data'; //get userList from data
 import UserForm from './UserForm.js';
 import {useState } from 'react';
 
