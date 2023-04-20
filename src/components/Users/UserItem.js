@@ -7,6 +7,9 @@ const UserItem = (props) => {
 	const [edit, setEdit] = useState(false);
 	const [fname, setFname] = useState(props.firstname);
 	const [lname, setLname] = useState(props.lastname);
+
+
+
 	return (
 		<tr>
         {edit==true ? (<>
@@ -24,8 +27,8 @@ const UserItem = (props) => {
 
 			<td>${props.totalExpenses}</td>		
 			<div className="mod">
-				<button onClick={()=>{props.deleteuser(props.userId)}}>delete</button>
 				<button onClick={()=>{Edit()}}>{edit == true? 'Save': 'Edit'}</button>
+				<button onClick={()=>{props.deleteuser(props.userId)}}>delete</button>
 			</div>
 		</tr>
 		);
@@ -42,7 +45,7 @@ const UserItem = (props) => {
 				props.setUlist(copyList);
 			}
 			setEdit(!edit);
-			
+
 		}
 
 
