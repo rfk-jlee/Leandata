@@ -1,4 +1,6 @@
 # Jon Lee's LeanData Take home Project
+Built using React.js
+
 
 ##Uses UUID for generating unique hash keys - https://www.npmjs.com/package/uuid
 
