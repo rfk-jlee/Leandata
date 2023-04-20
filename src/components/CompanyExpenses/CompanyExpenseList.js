@@ -36,7 +36,7 @@ const CompanyExpensesList = ({explist}) => {
                 cat[expense.category] = 0;
             }
             //increment existing cost by the new cost not yet added
-            cat[expense.category] += expense.cost;
+            cat[expense.category] += parseFloat(expense.cost);
             return cat;
           }, {});
           

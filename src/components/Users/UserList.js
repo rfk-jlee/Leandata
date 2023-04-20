@@ -5,38 +5,10 @@ import { userList,
 import UserForm from './UserForm.js';
 import {useState } from 'react';
 
-
-//move these eventually to UserFunc.js
-function DeleteUser(userId){
-  //delete user from list
-  //delete user dependencies ie delete all expenses of user
-  userList.delete(userId);
-}
-
-
-function GetExpensesFromUser(expIds){
-  let accum = 0;
-  for (let i in expIds){
-    accum += expenseList[expIds[i]].cost; //retrieve from expenseList dictionary using unique expenseId keys
-  }
-  return accum;
-}
-
-
-
-
-
-
-
 const UserList = ({ulist, setUlist, explist, setExplist}) => {
   //state test
   //state of add/edit Form
   const [showForm, setShowForm] = useState(false);
-  console.log('new Ulist');
-  console.log(ulist);
-  console.log('new explist');
-  console.log(explist);
-
 
   function Mapping({users}){  
     return Object.entries(users).map( 
@@ -46,8 +18,10 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
           firstname={user.firstname} 
           lastname={user.lastname} 
           totalExpenses={GetExpensesFromUser(user.expenseIds)}
-          edituser={EditUser}
           deleteuser={DeleteUser}
+          setUlist={setUlist}
+          ulist={ulist}
+        
         />
 
         } 
@@ -68,22 +42,17 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
         <Mapping users={ulist}/>
       </table>
       <div className="addUser">
-        <button onClick={()=>{setShowForm(!showForm)}}>Add New User</button>
+        <button onClick={()=>{setShowForm(!showForm)}}>{showForm ? 'Done Adding New Users' :'Add New User'}</button>
       </div>
+      <div className={showForm?'show' : 'hide'}>
       <UserForm 
-        ulist={ulist}
-        setUlist={setUlist}/>
+          ulist={ulist}
+          setUlist={setUlist}/>
+      </div>
+
       </>
     );
 
-    function EditUser({props}){
-      //open UserForm
-      //get User Data
-      //populate Form with info
-      let existingUser = ulist[this.userId];
-      
-  }
-  
   //move this later
   function DeleteUser(props){
     //copy the dict
@@ -91,10 +60,10 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
     let copylist = {...ulist};
     //find all existing expenses from the
     let userExpenses;
+    //if expenses exist for this userid
     if (copylist[userid].expenseIds.length > 0) {
       userExpenses = copylist[userid].expenseIds;
       DeleteExpenses(userExpenses);
-
     }
   
     //delete dictionary entry
@@ -117,6 +86,15 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
     setExplist(copyexplist);
 
   }
+
+  function GetExpensesFromUser(expIds){
+    let accum = 0;
+    for (let i in expIds){
+      accum += parseFloat(explist[expIds[i]].cost); //retrieve from expenseList dictionary using unique expenseId keys
+    }
+    return accum;
+  }
+  
   
 
 }
