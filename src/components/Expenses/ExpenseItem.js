@@ -4,41 +4,80 @@ import {useState} from 'react';
 const ExpenseItem = (props) => {
 
     const [edit, setEdit] = useState(false);
-    /*
-	const [fullname, setFullname] = useState(props.fullname);
+	const [userId, setUserId] = useState(props.userId);
+    const [oldUserId, setOldUserId] = useState(props.userId);
 	const [category, setCategory] = useState(props.category);
     const [description, setDescription] = useState(props.description);
 	const [cost, setCost] = useState(props.cost);
-*/
+    
 	return (
         <tr>
-            <td>{props.fullname}</td>
-            <td>{props.category}</td>
-            <td>{props.description}</td>
-            <td>${props.cost}</td>
+             {edit==true ? (<>
+                <td>{props.buildName({setUserId, userId})}</td>
+			    <td>{props.catSelect({setCategory, category})}</td>
+                <td><input value={description} onChange={(e) => {setDescription(e.target.value)}}/></td>
+			    <td><input value={cost} onChange={(e) => {setCost(e.target.value)}}/></td>
+            </>):
+             (
+             <>
+                <td>{props.fullname}</td>
+                <td>{props.category}</td>
+                <td>{props.description}</td>
+                <td>${props.cost}</td>
+            </>)}
+
             <div className="mod">
                 <button onClick={()=>{props.deleteExpenses(props)}}>delete</button>
-                <button onClick={()=>{}}>{edit == true? 'Save': 'Edit'}</button>
+                <button onClick={()=>{Edit()}}>{edit == true? 'Save': 'Edit'}</button>
             </div>
         </tr>
     );
 
     		//edit press turn into inputs
-            /*
 		function Edit(){
-			let userId = props.userId;
-			let copyList = {...props.ulist};
-			//copyList[userId].firstname =fname;
-			//copyList[userId].lastname =lname;
+			let expId = props.expId;
+			let copyList = {...props.explist};
+            let newUID = userId;
+			let copyUserList = {...props.ulist};
+
+            //update Expense dictionary
+            copyList[expId].userId = userId;
+			copyList[expId].category =category;
+			copyList[expId].description =description;
+            copyList[expId].cost = parseFloat(cost);
+            
+            //remove and add link to expId.
+          // props.deleteExpenses(oldUserId, expId);
+
+            //adding expense Id to newly edited list if userId has changed
+            // and deleting old userId
+            console.log('oldUserId');
+            console.log(oldUserId);
+            console.log('userId')
+            console.log(newUID)
+            if(oldUserId != newUID){
+                copyUserList[newUID].expenseIds.push(expId);
+                console.log('oldUserId');
+                console.log(oldUserId);
+                console.log('expId');
+                console.log(expId);
+                props.deleteExpensesFromUser(oldUserId, expId);
+
+            }
+
 			//saves edit if edit is false
 			if(edit){
-				props.setUlist(copyList);
-			}
+				props.setExplist(copyList);
+                props.setUlist(copyUserList);
+
+			} else{
+                console.log('setting new userID');
+                setOldUserId(userId);
+            }
+            //toggle edit
 			setEdit(!edit);
 			
-		}*/
-
-
+		}
 
 }
 

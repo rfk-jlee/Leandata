@@ -45,3 +45,10 @@ th{
 th, tr{
   padding:5px;
 }
+
+.show{
+  display:block;
+}
+.hide{
+  display:none;
+}
