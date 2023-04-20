@@ -1,20 +1,54 @@
 import './App.css';
-import UserForm from './components/Users/UserForm.js';
 import UserList from './components/Users/UserList.js';
 import ExpenseList from './components/Expenses/ExpenseList';
 import AddExpenseForm from './components/Expenses/AddExpenseForm';
-//import userList from './data.js';
-//import expenseList from './data.js';
+import CompanyExpensesList from './components/CompanyExpenses/CompanyExpenseList';
+import {
+    userList,
+    expenseList,
+} from './data.js';
+import { useState, createContext, useContext } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './routes/layout';
+const { uuid } = require('uuidv4');
+
+
+
+
+//userList displays be default
+//have buttons to show different tables
+//UserList - All Expenses - Company Expenses
+
 
 function App() {
-  return (
-    <>
-      <UserList/>
-      <UserForm/>
-      <ExpenseList/>
-      <AddExpenseForm/>
-    </>
-    );
+  //initial lists
+  const [ulist, setUlist] = useState(userList);
+  const [explist, setExplist] = useState(expenseList);
+
+
+return(
+  <BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route index element={
+        <UserList 
+        ulist={ulist}
+        setUlist={setUlist}
+        explist={explist}
+        setExplist={setExplist} />} />
+    <Route path="expenses" element={
+        <ExpenseList 
+        explist={explist}
+        setExplist={setExplist} />} />
+    <Route path="companyexpenses" element={
+        <CompanyExpensesList 
+        explist={explist}/>} />
+    </Route>
+  </Routes>
+</BrowserRouter>
+);
+
+
 
 }
 

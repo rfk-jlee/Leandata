@@ -26,3 +26,22 @@ li{
   align-items: center;
   justify-self: center;
 }
+
+nav ul{
+  display: flex;
+}
+
+nav ul li{
+  padding: 10px;
+  
+}
+
+
+th{
+  background: gray;
+  font-size: 20px;
+}
+
+th, tr{
+  padding:5px;
+}
