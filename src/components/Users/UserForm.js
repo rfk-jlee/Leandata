@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const AddUserForm = ({ulist, setUlist}) => {
-
 	const [fname, setFname] = useState('');
 	const [lname, setLname] = useState('');
 
