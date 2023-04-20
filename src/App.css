@@ -47,8 +47,18 @@ th, tr{
 }
 
 .show{
-  display:block;
+  display:flex;
+  align-items: center;
+  padding:10px;
 }
 .hide{
   display:none;
+}
+
+.col-sm{
+  padding:10px;
+}
+
+.err{
+  color:red;
 }

@@ -42,7 +42,7 @@ const UserList = ({ulist, setUlist, explist, setExplist}) => {
         <Mapping users={ulist}/>
       </table>
       <div className="addUser">
-        <button onClick={()=>{setShowForm(!showForm)}}>{showForm ? 'Done Adding New Users' :'Add New User'}</button>
+        <button onClick={()=>{setShowForm(!showForm)}}>{showForm ? 'Cancel' :'Add New User'}</button>
       </div>
       <div className={showForm?'show' : 'hide'}>
       <UserForm 
