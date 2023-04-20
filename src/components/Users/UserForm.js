@@ -46,7 +46,6 @@ const AddUserForm = ({ulist, setUlist}) => {
 	function onSubmit(event){
 		event.preventDefault();
 		//when submitting - check if editing or creating new user
-
 		let copyList = {...ulist};
 		//GENERATE UNIQUE KEY with uuidv4
 		let newkey = uuidv4();

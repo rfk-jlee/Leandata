@@ -6,7 +6,9 @@ import {useState} from 'react';
 const AddExpenseForm = (props) => {
     const [userId, setUserId] = useState('');
     const [category, setCategory] = useState('');
+    const [cost, setCost] = useState('');
 
+    //form for adding a brand new expense
 	return (
 		<form onSubmit={onSubmit}>
 			<div className='row'>
@@ -27,6 +29,7 @@ const AddExpenseForm = (props) => {
 						className='form-control'
 						id='description'
 					></input>
+                    
 				</div>
                 <div className='col-sm'>
 					<label for='cost'>Cost</label>
@@ -35,7 +38,9 @@ const AddExpenseForm = (props) => {
 						type='text'
 						className='form-control'
 						id='cost'
+                        onChange={(e)=>{setCost(e.target.value)}}
 					></input>
+                    {isNaN(cost)?<label className="err">Cost must be a number</label>:''}
 				</div>
 			</div>
             <div className='row'>
@@ -58,12 +63,19 @@ const AddExpenseForm = (props) => {
 		//GENERATE UNIQUE KEY with uuidv4
 		let newkey = uuidv4();
 		//construct key-value pair
+        //cannot build with empty userId
+        //validate cost is a number
+        if (isNaN(cost) ){
+            return;
+        }
+
+        //add new key/value pair to copied hashtable
 		copyExpList[newkey] = {
 				userId: userId,
                 expId: newkey,
 				category: category,
                 description:event.target[2].value,
-				cost:event.target[3].value,
+				cost:cost,
 		};
 
         //modify dictionary by userId and add the newkey to expenseIds list

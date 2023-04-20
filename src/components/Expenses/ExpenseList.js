@@ -49,8 +49,8 @@ const ExpenseList = ({explist, setExplist, ulist, setUlist}) => {
             <th>Cost</th>
           </tr>
           <Mapping explist={explist}/>
-          <div>
-            <button onClick={()=>{setShowForm(!showForm)}}>Add New Expense</button>
+          <div className={Object.keys(ulist).length != 0 ?'show' : 'hide'}>
+            <button onClick={()=>{setShowForm(!showForm)}}>{showForm ? 'Cancel' :'Add New Expense'}</button>
           </div>
         </table>
         <div  className={showForm?'show' : 'hide'}>
@@ -72,15 +72,11 @@ const ExpenseList = ({explist, setExplist, ulist, setUlist}) => {
 
       function DeleteExpenses(props){
         //copy the dict
-        console.log(props);
         let copyexplist = {...explist};
-
         //delete expenses from user
          DeleteExpensesFromUser(props.userId, props.expId);
-
         //delete expId from copied explist
         delete copyexplist[props.expId];
-
         //rerender new Exp list
         setExplist(copyexplist);
          // then find expense ID from users list and delete it from there 
@@ -93,8 +89,6 @@ const ExpenseList = ({explist, setExplist, ulist, setUlist}) => {
        //get User
        let user = copyUList[userId];
        //check Ids - if match destroy the id
-       console.log('user.expenseIds');
-       console.log(user.expenseIds);
        for(let i in user.expenseIds){
         if(user.expenseIds[i] == expId){
           user.expenseIds.splice(i, 1);
@@ -102,16 +96,24 @@ const ExpenseList = ({explist, setExplist, ulist, setUlist}) => {
           break;
         }
        }
-       console.log('copyUList');
-       console.log(copyUList);
        setUlist(copyUList);
       }
 
       //build a select based on all usernames
       function BuildSelect({setUserId, userId}){        
-        //if userid is empty
+        //if userid is empty set to first UserId as default
+        let newuserId;
+        if(userId== '' && Object.keys(ulist).length != 0){
+          for(var k in ulist) {
+             break;
+         }
+         newuserId = ulist[k].userId;
+        }
+
         return (
-            <select value={userId==''?setUserId(1):userId} onChange={(e)=>{setUserId(e.target.value)}}>
+            <select	
+            required='required'
+            value={userId==''&& Object.keys(ulist).length != 0 ? setUserId(newuserId):userId} onChange={(e)=>{setUserId(e.target.value)}}>
               {Object.entries(ulist).map(([key, user]) => (
                 <option value={user.userId}>{user.firstname+ ' ' + user.lastname}</option>
               ))}
@@ -123,8 +125,11 @@ const ExpenseList = ({explist, setExplist, ulist, setUlist}) => {
       
       //build the category selection
       function CategorySelect({setCategory, category}){
+        //if category is empty set to Food as default
         return (
-            <select value={category ==''?setCategory('food'):category} onChange={(e)=>{setCategory(e.target.value)}}>
+            <select	
+            required='required'
+            value={category ==''?setCategory('food'):category} onChange={(e)=>{setCategory(e.target.value)}}>
                 <option value='food'>food</option>
                 <option value='travel'>travel</option>
                 <option value='equipment'>equipment</option>

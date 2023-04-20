@@ -29,6 +29,7 @@ const ExpenseItem = (props) => {
             <div className="mod">
                 <button onClick={()=>{props.deleteExpenses(props)}}>delete</button>
                 <button onClick={()=>{Edit()}}>{edit == true? 'Save': 'Edit'}</button>
+                {isNaN(cost) ?<label className="err">Cost must be a number</label>:''}
             </div>
         </tr>
     );
@@ -39,7 +40,11 @@ const ExpenseItem = (props) => {
 			let copyList = {...props.explist};
             let newUID = userId;
 			let copyUserList = {...props.ulist};
-
+            //validate cost is a number
+            if (isNaN(cost) ){
+                return;
+            }
+            
             //update Expense dictionary
             copyList[expId].userId = userId;
 			copyList[expId].category =category;
@@ -51,10 +56,6 @@ const ExpenseItem = (props) => {
 
             //adding expense Id to newly edited list if userId has changed
             // and deleting old userId
-            console.log('oldUserId');
-            console.log(oldUserId);
-            console.log('userId')
-            console.log(newUID)
             if(oldUserId != newUID){
                 copyUserList[newUID].expenseIds.push(expId);
                 console.log('oldUserId');
