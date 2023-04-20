@@ -1,5 +1,7 @@
 # Jon Lee's LeanData Take home Project
 
+###Needs UUID for generating unique hash keys - https://www.npmjs.com/package/uuid
+npm install uuid
 
 ## Available Scripts
 
